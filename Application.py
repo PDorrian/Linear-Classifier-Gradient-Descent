@@ -1,6 +1,7 @@
 import Perceptron
 import sys
 import pygame
+
 import Point
 
 # Surface setup
@@ -18,30 +19,39 @@ white = (255, 255, 255)
 # Create points
 points = []
 for i in range(100):
-    points.append(Point.Point(size))
+    points.append(Point.Point.auto(screen, size))
 
 # Create perceptron
 brain = Perceptron.Perceptron()
+
+
+def f(x):
+    # y = mx + c
+    return 3*x + 2
+
 
 # Pygame game loop
 pygame.display.update()
 while 1:
     # Draw background and separating line
     screen.fill(white)
-    pygame.draw.line(screen, black, (0, 0), size)
+
+    p1 = Point.Point(screen, size, -1, f(-1))
+    p2 = Point.Point(screen, size, 1, f(1))
+    pygame.draw.line(screen, black, (p1.pixel_x(), p1.pixel_y()), (p2.pixel_x(), p2.pixel_y()))
 
     # Draw points on screen
     for point in points:
-        point.show(screen)
+        point.draw()
 
     for point in points:
         # Colour points depending on guess accuracy
         inputs = [point.x, point.y]
         guess = brain.guess(inputs)
         if guess == point.label:
-            pygame.draw.circle(screen, green, (point.x, point.y), 5)
+            pygame.draw.circle(screen, green, (point.pixel_x(), point.pixel_y()), 5)
         else:
-            pygame.draw.circle(screen, red, (point.x, point.y), 5)
+            pygame.draw.circle(screen, red, (point.pixel_x(), point.pixel_y()), 5)
 
     # Update screen
     pygame.display.update()
