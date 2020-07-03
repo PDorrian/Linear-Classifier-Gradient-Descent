@@ -8,3 +8,16 @@ def translate(value, left_min, left_max, right_min, right_max):
 
     # Convert the 0-1 range into a value in the right range.
     return right_min + (value_scaled * right_span)
+
+
+def f(x):
+    # y = mx + c
+    return 0.3*x + 0.2
+
+
+# Activation function
+def sign(n):
+    if n > 0:
+        return 1
+    else:
+        return -1

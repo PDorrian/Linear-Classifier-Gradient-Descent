@@ -1,6 +1,6 @@
 import pygame
 import random
-from utility import translate
+from utility import translate, f
 
 
 class Point:
@@ -8,12 +8,13 @@ class Point:
         # Give point random position
         self.x = x
         self.y = y
+        self.bias = 1
         self.screen = screen
         self.width = size[0]
         self.height = size[1]
 
         # Label depending on which side of line it is
-        if self.x > self.y:
+        if y < f(x):
             self.label = 1
         else:
             self.label = -1
