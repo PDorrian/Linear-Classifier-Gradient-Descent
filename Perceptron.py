@@ -1,6 +1,7 @@
 import random
 from utility import sign
 
+
 class Perceptron:
     def __init__(self, n):
         # Learning rate used in training
