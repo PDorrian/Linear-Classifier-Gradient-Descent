@@ -9,6 +9,7 @@ from Point import Point
 pygame.init()
 size = width, height = 600, 600
 screen = pygame.display.set_mode(size)
+pygame.display.set_caption('Linear Classifier')
 
 # Colours
 red = (255, 0, 0)
@@ -28,14 +29,17 @@ brain = Perceptron.Perceptron(3)
 
 # Pygame game loop
 pygame.display.update()
-while 1:
+running = True
+while running:
     # Draw background and separating line
     screen.fill(white)
 
+    # Target line
     p1 = Point(screen, size, -1, f(-1))
     p2 = Point(screen, size, 1, f(1))
     pygame.draw.line(screen, black, (p1.pixel_x(), p1.pixel_y()), (p2.pixel_x(), p2.pixel_y()))
 
+    # Predicted line
     p3 = Point(screen, size, -1, brain.guess_y(-1))
     p4 = Point(screen, size, 1, brain.guess_y(1))
     pygame.draw.line(screen, grey, (p3.pixel_x(), p3.pixel_y()), (p4.pixel_x(), p4.pixel_y()))
@@ -59,7 +63,7 @@ while 1:
     for event in pygame.event.get():
         # Stop on window close
         if event.type == pygame.QUIT:
-            sys.exit()
+            running = False
 
         if event.type == pygame.MOUSEBUTTONUP:
             # Train perceptron when mouse is clicked

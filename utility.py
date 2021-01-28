@@ -12,7 +12,7 @@ def translate(value, left_min, left_max, right_min, right_max):
 
 def f(x):
     # y = mx + c
-    return 0.3*x + 0.2
+    return -0.7*x + 0.2
 
 
 # Activation function

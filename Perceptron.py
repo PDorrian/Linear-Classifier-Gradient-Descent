@@ -5,7 +5,7 @@ from utility import sign
 class Perceptron:
     def __init__(self, n):
         # Learning rate used in training
-        self.lr = 0.005
+        self.lr = 0.1
         self.n = n
         # Initialise weights randomly
         self.weights = [0]*n
